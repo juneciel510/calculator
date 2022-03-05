@@ -10,83 +10,72 @@ import (
 	"strings"
 )
 
-func clientLoop2() {
-
-	// var ct string
-	// var result float64
-	// var operators  []string
-	// var numbers  []float64
+func clientLoop() {
 	var scanner *bufio.Scanner = bufio.NewScanner(os.Stdin)
-	// var txt string
-	//wait for the input from the user
+
+	//wait for the input from the user and print result
 	for {
 		var operators  []string
 		var numbers  []float64
-		fmt.Println("Enter numbers(separate with comma):")
+		fmt.Println("Enter expression e.g. 6*8+(7-8/9+6)*(6+9*8):")
 		scanner.Scan()
-		txt := scanner.Text()
+		expression := scanner.Text()
 		if err := scanner.Err(); err != nil {
 			fmt.Println("Error reading text:", err)
 		}
-		// for _, charRune := range txt {
+		// for _, charRune := range expression {
 		// 	char := string(charRune)
 		// 	fmt.Println("char:", char)
 		// }
-		
 
-		numbers=getNumbers(txt)
-		operators=getOperators(txt)
-		result:=noParenthesesCalculation(numbers,operators)
-		fmt.Println("the result of txt is:",txt,result)
+		numbers=extractNumbers(expression)
+		operators=extractOperators(expression)
+		numbersNew, operatorsNew:=removeAllParentheses(numbers, operators)
+		result:=noParenthesesCalculation(numbersNew, operatorsNew)
+		fmt.Println("The result of expression ",expression," is:",result)
 
 
 	}
 }
 
-func getOperators(txt string) []string{
+func extractOperators(expression string) []string{
 	var operators  []string
 	reg, err := regexp.Compile("[0-9.]+")
 	if err != nil {
 		log.Fatal(err)
 	}
-	processedString := reg.ReplaceAllString(txt, ",")
-	fmt.Println("processedString:", processedString)
+	processedString := reg.ReplaceAllString(expression, ",")
 	
 	operator_list:= strings.Split(processedString, ",")
-	fmt.Println("operator_list:", operator_list)
 	
 	for _, v := range operator_list {
 		if v!="" {
 			for _, charRune := range v {
 				char := string(charRune)
-				fmt.Println("char:", char)
+				// fmt.Println("char:", char)
 				operators = append(operators, char)	
 			}
 				
 		}
 	}
 
-	fmt.Println("operators,len(operators):", operators,len(operators))
 	return operators
 }
 
-func getNumbers(txt string)[]float64{
+func extractNumbers(expression string)[]float64{
 	var numbers  []float64
 	reg, err := regexp.Compile("[^0-9.]+")
 	if err != nil {
 		log.Fatal(err)
 	}
-	processedString := reg.ReplaceAllString(txt, ",")
-	fmt.Println("processedString:", processedString,len(processedString))
+	processedString := reg.ReplaceAllString(expression, ",")
 	numbers_string := strings.Split(processedString, ",")
-	fmt.Println("numbers_string,len(numbers_string):", numbers_string,len(numbers_string))
 	
 	for _, v := range numbers_string {
 		if v!="" {	
 			number, _ := strconv.ParseFloat(v, 64)
 			numbers = append(numbers, number)}
 		}
-	fmt.Println("numbers,len(numbers):", numbers,len(numbers))
 	return numbers
 }
 func opLevel(op string) int {
@@ -109,21 +98,16 @@ func noParenthesesCalculation(numbers []float64, operators []string) float64{
 	opStack := CreateStack()
 	numberStack := CreateStack()
 	for index, operator := range operators{
-		fmt.Println("------index",index,operator)
 		if opStack.Depth()==0 {
 			numberStack.Push(numbers[index])
 			numberStack.Push(numbers[index+1])
 			opStack.Push(operator)
-			fmt.Println("numberStack,opStack",numberStack.Top(),numberStack.Depth(),opStack.Depth(),opStack.Top())
 		}else{
 			if opCmp(operator,opStack.Top().(string))>0{
-				fmt.Println("operator,opStack.Top()",operator,opStack.Top().(string))
 				result=calculateTwoNumber(operator,numbers[index+1],numberStack.Pop().(float64))
-				fmt.Println("> result",result)
 				numberStack.Push(result)
 			} else if opCmp(operator,opStack.Top().(string))<=0{
 				result=calculateTwoNumber(opStack.Pop().(string),numberStack.Pop().(float64),numberStack.Pop().(float64))
-				fmt.Println("<=0 result",result)
 				numberStack.Push(result)
 				numberStack.Push(numbers[index+1])
 				opStack.Push(operator)
@@ -134,35 +118,7 @@ func noParenthesesCalculation(numbers []float64, operators []string) float64{
 	return result
 }
 
-func ParenthesesCalculation(numbers []float64, operators []string) float64{
-	var result float64
-	opStack := CreateStack()
-	numberStack := CreateStack()
-	for index, operator := range operators{
-		fmt.Println("------index",index,operator)
-		if opStack.Depth()==0 {
-			numberStack.Push(numbers[index])
-			numberStack.Push(numbers[index+1])
-			opStack.Push(operator)
-			fmt.Println("numberStack,opStack",numberStack.Top(),numberStack.Depth(),opStack.Depth(),opStack.Top())
-		}else{
-			if opCmp(operator,opStack.Top().(string))>0{
-				fmt.Println("operator,opStack.Top()",operator,opStack.Top().(string))
-				result=calculateTwoNumber(operator,numbers[index+1],numberStack.Pop().(float64))
-				fmt.Println("> result",result)
-				numberStack.Push(result)
-			} else if opCmp(operator,opStack.Top().(string))<=0{
-				result=calculateTwoNumber(opStack.Pop().(string),numberStack.Pop().(float64),numberStack.Pop().(float64))
-				fmt.Println("<=0 result",result)
-				numberStack.Push(result)
-				numberStack.Push(numbers[index+1])
-				opStack.Push(operator)
-			}
-		}
-	}
-	result=calculateTwoNumber(opStack.Pop().(string),numberStack.Pop().(float64),numberStack.Pop().(float64))
-	return result
-}
+
 
 func calculateTwoNumber(operator string, num1 float64,num2 float64) float64 {
 	var result float64
