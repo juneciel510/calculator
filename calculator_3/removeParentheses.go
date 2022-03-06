@@ -28,7 +28,7 @@ func removeSingleParentheses(numbers []float64, operators []string, leftParenthe
 	operatorsInParentheses := copyOperators[leftParenthesesIndex+1 : rightParenthesesIndex]
 	numbersInParentheses := copyNumbers[leftParenthesesIndex:rightParenthesesIndex]
 	
-	result := noParenthesesCalculation(numbersInParentheses,operatorsInParentheses)
+	result := simpleCalculation(numbersInParentheses,operatorsInParentheses)
 
 	operatorsNew := append(copyOperators[:leftParenthesesIndex], copyOperators[rightParenthesesIndex+1:]...)
 	
