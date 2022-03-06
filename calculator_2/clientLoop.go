@@ -20,7 +20,7 @@ func clientLoop() {
 		operators:=extractOperators(expression)
 		numbers:=extractNumbers(expression)
 		
-		result:=noParenthesesCalculation(numbers,operators)
+		result:=simpleCalculation(numbers,operators)
 		fmt.Println("the result of expression ",expression, ":",result)
 
 	}

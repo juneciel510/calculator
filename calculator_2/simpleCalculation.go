@@ -61,8 +61,8 @@ func opCmp(op1 string, op2 string) int {
 	return opLevel(op1) - opLevel(op2)
 }
 
-//calculate the expression without Parentheses
-func noParenthesesCalculation(numbers []float64, operators []string) float64{
+//calculate the expression only contains numbers and +,-,*,/
+func simpleCalculation(numbers []float64, operators []string) float64{
 	var result float64
 	opStack := CreateStack()
 	numberStack := CreateStack()
