@@ -60,9 +60,9 @@ Advanced calculator input expression like `7*(9.5+9-3+9^2/9*32+(log(3+8.9*3/100)
 Operators: `+ - * / ^ log sin cos`
 
 `Note:`
-Stop using stack, rewrite the main algorithm which is more accurate & simpler
-Nested parentheses error solved
-Only allow log(number): natural logarithm
+Stop using stack, rewrite the main algorithm which is more accurate & simpler<br/>
+Fix nested parentheses error<br/>
+Only allow log(number): natural logarithm<br/>
 
 #todo:
 add log(number,base)
