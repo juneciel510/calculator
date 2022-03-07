@@ -11,11 +11,11 @@ func compoundCalculation(expression string) float64 {
 		return numbers[0]
 	}
 	operators=extractOperators(expression)
-	fmt.Println("numbers,operators:", numbers,operators)
+	fmt.Println("extracted------numbers,operators:", numbers,operators)
 	numbers, operators = removeAllParentheses(numbers, operators)
-	fmt.Println("numbers, operators:", numbers, operators)
+	fmt.Println("remove parentheses------numbers, operators:", numbers, operators)
 	numbers, operators = removeAllPower(numbers, operators)
-	fmt.Println("numbers, operators:", numbers, operators)
+	fmt.Println("remove power------numbers, operators:", numbers, operators)
 	result := simpleCalculation(numbers, operators)
 	return result
 }
