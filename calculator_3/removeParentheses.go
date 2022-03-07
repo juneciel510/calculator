@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 )
 
 func findFirstParenthesesIndices(numbers []float64, operators []string) (int, int, error) {
@@ -28,8 +27,7 @@ func removeSingleParentheses(numbers []float64, operators []string, leftParenthe
 
 	operatorsInParentheses := copyOperators[leftParenthesesIndex+1 : rightParenthesesIndex]
 	numbersInParentheses := copyNumbers[leftParenthesesIndex:rightParenthesesIndex]
-	fmt.Println("-------removeSingleParentheses------")
-	fmt.Println("numbersInParentheses, operatorsInParentheses:",numbersInParentheses, operatorsInParentheses)
+
 	result := simpleCalculation(numbersInParentheses,operatorsInParentheses)
 
 	operatorsNew := append(copyOperators[:leftParenthesesIndex], copyOperators[rightParenthesesIndex+1:]...)
@@ -47,8 +45,7 @@ func removeAllParentheses(numbers []float64, operators []string) ([]float64, []s
 		if err != nil {
 			break	
 		}	
-		fmt.Println("==========")
-		fmt.Println("numbersNew,operatorsNew, leftParenthesesIndex, rightParenthesesIndex:",numbersNew,operatorsNew, leftParenthesesIndex, rightParenthesesIndex)
+
 		numbersNew,operatorsNew  = removeSingleParentheses(numbersNew, operatorsNew, leftParenthesesIndex, rightParenthesesIndex)		
 	}
 

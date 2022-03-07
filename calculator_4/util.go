@@ -15,14 +15,17 @@ func isNum(str string) bool {
 	return res
 }
 
+//operator: + - * / ^ ( ) 
 func isSymbolOp(str string) bool {
-	res, err := regexp.MatchString("^[\\+|\\-|\\*|/|\\^|\\)|\\()|!]$", str)
+	// res, err := regexp.MatchString("^[\\+|\\-|\\*|/|\\^|\\)|\\()|!]$", str)
+	res, err := regexp.MatchString("^[\\+|\\-|\\*|/|\\^|\\)|\\(]$", str)
 	if err != nil {
 		panic(fmt.Sprintf("regexp.MatchString() error: %s.\n", err.Error()))
 	}
 	return res
 }
 
+//operators: log sin cos
 func isLetterOp(str string) bool {
 	letterOperators := "logsincos"
 	res := strings.Contains(letterOperators, str)

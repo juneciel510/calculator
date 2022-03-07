@@ -2,13 +2,12 @@ package main
 
 import (
 	"errors"
-	"fmt"
 )
 
-func findInnermostParenthesesIndices(expressionProcessed []string) (int, int, error) {
+func findInnermostParenthesesIndices(expression []string) (int, int, error) {
 	var leftParenthesesIndex int
 	var rightParenthesesIndex int
-	for index, item := range expressionProcessed {
+	for index, item := range expression {
 		if item == "(" {
 			leftParenthesesIndex = index
 		}
@@ -20,32 +19,26 @@ func findInnermostParenthesesIndices(expressionProcessed []string) (int, int, er
 	return leftParenthesesIndex, rightParenthesesIndex, errors.New("Parentheses Not find")
 }
 
-func removeSingleParentheses(expressionProcessed []string, leftParenthesesIndex int, rightParenthesesIndex int) []string {
-	// copyOperators:= make([]string, len(operators))
-	// copy(copyOperators, operators)
-
-	expressionInParentheses := expressionProcessed[leftParenthesesIndex+1 : rightParenthesesIndex]
-	fmt.Println("-------removeSingleParentheses------")
-	fmt.Println("expressionInParentheses:", expressionInParentheses)
+func removeSingleParentheses(expression []string, leftParenthesesIndex int, rightParenthesesIndex int) []string {
+	expressionInParentheses := expression[leftParenthesesIndex+1 : rightParenthesesIndex]
 	result, err := noParanthesesCalc(expressionInParentheses)
 	if err != nil {
 		panic(err)
 	}
 
-	expressionNew := append(expressionProcessed[:leftParenthesesIndex], asString(result))
-	expressionNew = append(expressionNew, expressionProcessed[rightParenthesesIndex+1:]...)
+	expressionNew := append(expression[:leftParenthesesIndex], asString(result))
+	expressionNew = append(expressionNew, expression[rightParenthesesIndex+1:]...)
 	return expressionNew
 }
 
-func removeAllParentheses(expressionProcessed []string) []string {
-	expressionNew := expressionProcessed
+func removeAllParentheses(expression []string) []string {
+	expressionNew := expression
 	for {
 		leftParenthesesIndex, rightParenthesesIndex, err := findInnermostParenthesesIndices(expressionNew)
 		if err != nil {
 			break
 		}
-		fmt.Println("==========")
-		fmt.Println("expressionNew, leftParenthesesIndex, rightParenthesesIndex:", expressionNew, leftParenthesesIndex, rightParenthesesIndex)
+	
 		expressionNew = removeSingleParentheses(expressionNew, leftParenthesesIndex, rightParenthesesIndex)
 	}
 

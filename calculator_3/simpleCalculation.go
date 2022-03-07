@@ -23,7 +23,6 @@ func extractOperators(expression string) []string{
 		if v!="" {
 			for _, charRune := range v {
 				char := string(charRune)
-				// fmt.Println("char:", char)
 				operators = append(operators, char)	
 			}
 				
@@ -70,21 +69,17 @@ func simpleCalculation(numbers []float64, operators []string) float64{
 	opStack := CreateStack()
 	numberStack := CreateStack()
 	for index, operator := range operators{
-		fmt.Println("---------index, operator",index, operator)
+	
 		if opStack.Depth()==0 {
 			numberStack.Push(numbers[index])
 			numberStack.Push(numbers[index+1])
 			opStack.Push(operator)
 		}else{
 			if opCmp(operator,opStack.Top().(string))>0{
-				fmt.Println("------   >0:",opStack.Top().(string))
 				result=calculateTwoNumber(operator,numbers[index+1],numberStack.Pop().(float64))
-				fmt.Println("result:",result)
 				numberStack.Push(result)
 			} else{
-				fmt.Println("------   <=0:",opStack.Top().(string))
 				result=calculateTwoNumber(opStack.Pop().(string),numberStack.Pop().(float64),numberStack.Pop().(float64))
-				fmt.Println("result:",result)
 				numberStack.Push(result)
 				numberStack.Push(numbers[index+1])
 				opStack.Push(operator)

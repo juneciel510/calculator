@@ -1,18 +1,18 @@
 package main
 
-// 链栈结点。
+// stack node
 type node struct {
 	value interface{}
 	next  *node
 }
 
-// 链栈结构。
+// stack structure
 type Stack struct {
 	top   *node
 	depth int
 }
 
-// 创建链栈。
+// create stack
 func CreateStack() *Stack {
 	return &Stack{
 		top:   nil,
@@ -20,7 +20,7 @@ func CreateStack() *Stack {
 	}
 }
 
-// 获取栈顶元素值。
+// obtain the value of the top of stack
 func (s *Stack) Top() interface{} {
 	if s.depth == 0 {
 		return nil
@@ -28,12 +28,13 @@ func (s *Stack) Top() interface{} {
 	return s.top.value
 }
 
-// 获取栈深。
+
+//obtain the depth of stack
 func (s *Stack) Depth() int {
 	return s.depth
 }
 
-// 压栈。
+// push to stack
 func (s *Stack) Push(value interface{}) {
 	node := &node{
 		value: value,
@@ -43,7 +44,7 @@ func (s *Stack) Push(value interface{}) {
 	s.depth++
 }
 
-// 弹栈。
+// pop the top of stack
 func (s *Stack) Pop() interface{} {
 	if s.depth == 0 {
 		return nil

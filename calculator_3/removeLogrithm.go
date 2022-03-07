@@ -16,14 +16,10 @@ func removeSingleLogarithm(expression string) (string,error) {
 	if found == ""{
 		return expression, errors.New("Logrithm not found")
 	}
-	fmt.Println("found", found, "in expression",expression)
 	expressionInLog := strings.Trim(found, "log(")
 	expressionInLog = strings.Trim(expressionInLog, ")")
-	fmt.Println(expressionInLog, found)
-
 	subExpressions := strings.Split(expressionInLog, ",")
-	fmt.Println(subExpressions)
-	fmt.Println(len(subExpressions))
+
 	var result float64
 	switch len(subExpressions) {
 		case 1:
@@ -41,8 +37,6 @@ func removeSingleLogarithm(expression string) (string,error) {
 
 	resultStr:=fmt.Sprintf("%f", result) 
 	expressionProcessed:=strings.Replace(expression, found, resultStr, 1)
-	fmt.Println("expressionProcessed",expressionProcessed)
-	
 	
 	return expressionProcessed,nil
 }
