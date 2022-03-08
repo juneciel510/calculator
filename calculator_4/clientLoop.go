@@ -23,7 +23,7 @@ func clientLoop() {
 		}
 
 		expression:=parse(expressionInput)
-		expression=removeMinus(expression)
+		expression=mergeNegativeNumber(expression)
 		expression=removeAllParentheses(expression)
 		result,err:=noParanthesesCalc(expression)
 		if err != nil {
