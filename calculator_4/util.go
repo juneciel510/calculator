@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"regexp"
 	"strconv"
 	"strings"
@@ -10,7 +11,7 @@ import (
 func isNum(str string) bool {
 	res, err := regexp.MatchString("^[\\d\\.]+$", str)
 	if err != nil {
-		panic(fmt.Sprintf("regexp.MatchString() error: %s.\n", err.Error()))
+		fmt.Println(fmt.Sprintf("regexp.MatchString() error: %s.\n", err.Error()))
 	}
 	return res
 }
@@ -20,7 +21,7 @@ func isSymbolOp(str string) bool {
 	// res, err := regexp.MatchString("^[\\+|\\-|\\*|/|\\^|\\)|\\()|!]$", str)
 	res, err := regexp.MatchString("^[\\+|\\-|\\*|/|\\^|\\)|\\(]$", str)
 	if err != nil {
-		panic(fmt.Sprintf("regexp.MatchString() error: %s.\n", err.Error()))
+		fmt.Println(fmt.Sprintf("regexp.MatchString() error: %s.\n", err.Error()))
 	}
 	return res
 }
@@ -50,11 +51,12 @@ func asFloat(value interface{}) float64 {
 	case string:
 		floatValue, err := strconv.ParseFloat(value, 64)
 		if err != nil {
-			panic(fmt.Sprintf("strconv.ParseFloat() error: %s.\n", err.Error()))
+			fmt.Println(fmt.Sprintf("strconv.ParseFloat() error: %s.\n", err.Error()))
 		}
 		return floatValue
 	default:
-		panic(fmt.Sprintf("calc.asFloat() error: Invalid type %T.", value))
+		fmt.Println(fmt.Sprintf("calc.asFloat() error: Invalid type %T", value))
+		return math.NaN()
 	}
 }
 

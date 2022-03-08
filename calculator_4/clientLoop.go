@@ -12,9 +12,9 @@ func clientLoop() {
 	//wait for the input from the user and print result
 	for {
 		fmt.Println("----------Read before use-----------")
-		fmt.Println("Operators: + - * / ^ sin cos log(number)--natural logarithm")
-		fmt.Println("Nested parentheses allowed")
-		fmt.Println("Enter expression e.g. -7*(9.5+9-3+9^2/9*32+(ln(3+8.9*3/100)^2+3-4+7)*9+log2(sin(-9))-3+9^2/9)*32:")
+		fmt.Println("Operators: + - * / ^ sin cos ln log")
+		fmt.Println("e.g. ln(5)--natural logarithm, log2(8)--base 5")
+		fmt.Println("Enter expression e.g. -7*(9.5+9-3+9^2/9*32+(ln(3+8.9*3/100)^2+3-4+7)*9+log2(sin(-9)-3+9^2/9))*32:")
 		fmt.Println("-------------------------------------")
 		scanner.Scan()
 		expressionInput := scanner.Text()
@@ -23,15 +23,21 @@ func clientLoop() {
 		}
 
 		expression:=parse(expressionInput)
+		// fmt.Println("parse:", expression)
 		expression=mergeNegativeNumber(expression)
+		// fmt.Println("mergeNegativeNumber:", expression)
 		expression=removeAllParentheses(expression)
 		result,err:=noParanthesesCalc(expression)
-		if err != nil {
-			fmt.Println(err)
+		if err != nil {	
+			fmt.Println("========================================")
+			fmt.Println(err,":",expressionInput)
+			fmt.Println("=========================================")
+		}else{
+			fmt.Println("========================================")
+			fmt.Println("The result of  ",expressionInput," is:",result)
+			fmt.Println("=========================================")
 		}
-		fmt.Println("========================================")
-		fmt.Println("The result of  ",expressionInput," is:",result)
-		fmt.Println("=========================================")
+
 
 	}
 }
