@@ -56,17 +56,17 @@ Accept two forms of log operator:
 
 ## calculator_4
 
-Advanced calculator input expression like `7*(9.5+9-3+9^2/9*32+(log(3+8.9*3/100)^2+3-4+7)*9+sin9-3+9^2/9)*32`
-Operators: `+ - * / ^ log sin cos`
+Advanced calculator input expression like `-7*(9.5+9-3+9^2/9*32+(ln(3+8.9*3/100)^2+3-4+7)*9+log2(sin(-9)-3+9^2/9))*32` <br/>
+Operators: `+ - * / ^ ln log sin cos` <br/>
+e.g.<br/>
+
+- ln(8): natural logarithm
+- log2(5.8): 2--base
+- sin(10.8)
+- cos(11)
 
 `Note:`<br/>
 Stop using stack, rewrite the main algorithm which is more accurate & simpler<br/>
 Fix nested parentheses error<br/>
-Only allow log(number): natural logarithm<br/>
 
-#todo:
-add log(number,base)
-
-- detect `,` first, and remove base and set the base individually
-- then follow the normal procedure
-- take multiple log into consideration
+`New feature:` allow negative numbers (08,Mar,2022)<br/>
