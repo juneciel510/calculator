@@ -26,10 +26,15 @@ func removeLetterOperators(expression []string) []string {
 	var result float64
 	for index < len(expression) {
 		switch expression[index] {
-		case "log":
+		case "ln":
 			result = math.Log(asFloat(expression[index+1]))
 			temp = append(temp, asString(result))
 			index += 2
+			break
+		case "log":
+			result =math.Log(asFloat(expression[index+2]))/ math.Log(asFloat(expression[index+1]))
+			temp = append(temp, asString(result))
+			index += 3
 			break
 		case "sin":
 			result = math.Sin(asFloat(expression[index+1]))
@@ -59,6 +64,7 @@ func removeSymbolOperators(expression []string, SymbolOperators []string) []stri
 			result = calculateSymbolOperators(expression[index],
 				asFloat(temp[len(temp)-1]),
 				asFloat(expression[index+1]))
+			//remove last element
 			temp = temp[:len(temp)-1]
 			temp = append(temp, asString(result))
 			index += 2
