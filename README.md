@@ -18,11 +18,12 @@ e.g Change directory to `calculator_4` and run with command line `.\calculator_4
 
 Consider it as a pipeline problem and solve following the below steps:
 
-1. remove all the parentheses, start from innermost one first
-2. remove `log, sin, cos`
-3. remove `^`
-4. remove `* /`
-5. remove `+ -`
+1. Merge negative numbers
+2. remove all the parentheses, start from innermost one first
+3. remove `log, sin, cos`
+4. remove `^`
+5. remove `* /`
+6. remove `+ -`
 
 ---
 
