@@ -69,4 +69,4 @@ e.g.<br/>
 Stop using stack, rewrite the main algorithm which is more accurate & simpler<br/>
 Fix nested parentheses error<br/>
 
-`New feature:` allow negative numbers (08,Mar,2022)<br/>
+`New features:` 1.allow negative numbers, 2.log base on any number (08,Mar,2022)<br/>
