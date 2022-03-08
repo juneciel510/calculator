@@ -59,7 +59,7 @@ Accept two forms of log operator:
 Advanced calculator input expression like `7*(9.5+9-3+9^2/9*32+(log(3+8.9*3/100)^2+3-4+7)*9+sin9-3+9^2/9)*32`
 Operators: `+ - * / ^ log sin cos`
 
-`Note:`
+`Note:`<br/>
 Stop using stack, rewrite the main algorithm which is more accurate & simpler<br/>
 Fix nested parentheses error<br/>
 Only allow log(number): natural logarithm<br/>
