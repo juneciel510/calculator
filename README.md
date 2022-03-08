@@ -66,7 +66,7 @@ e.g.<br/>
 - cos(11)
 
 `Note:`<br/>
-Stop using stack, rewrite the main algorithm which is more accurate & simpler<br/>
+Stop using stack, re-design the scheme, making it more accurate & simpler<br/>
 Fix nested parentheses error<br/>
 
 `New features:` 1.allow negative numbers, 2.log base on any number (08,Mar,2022)<br/>
