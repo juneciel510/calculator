@@ -26,7 +26,7 @@ func isSymbolOp(str string) bool {
 	return res
 }
 
-//operators: log sin cos
+//operators: ln log sin cos
 func isLetterOp(str string) bool {
 	letterOperators := "logsincosln"
 	res := strings.Contains(letterOperators, str)
