@@ -17,7 +17,7 @@ e.g Change directory to `calculator_4` and run with command line `.\calculator_4
 
 Consider it as a pipeline problem and solve following the below steps:
 
-1. Merge negative numbers
+1. handle negative numbers
 2. remove all the parentheses, start from innermost one first
 3. remove `log, sin, cos`
 4. remove `^`
