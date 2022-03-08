@@ -1,6 +1,5 @@
 # Calculator
 
-`Note:`<br/>
 Commandline user interface
 Inspired by [mrcaidev/calculator](https://github.com/mrcaidev/calculator), however developed a totally different scheme.<br/>
 Easy to upgrade with more operators.
