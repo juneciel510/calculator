@@ -1,6 +1,6 @@
 package main
 
-func mergeNegativeNumber(expression []string) []string {
+func handleNegativeNumber(expression []string) []string {
 	temp := []string{}
 	for index, item := range expression {
 		if index > 0 && isNum(item) && (temp[len(temp)-1] == "-") && (len(temp) == 1 || temp[len(temp)-2] == "(") {
