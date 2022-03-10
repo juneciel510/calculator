@@ -71,4 +71,7 @@ Fix nested parentheses error<br/>
 
 `New features:` 1.allow negative numbers, 2.log base on any number (08,Mar,2022)<br/>
 
-`To-do:` graphical user interface
+`To-do:`
+
+- graphical user interface
+- add more operators and constants( e.g. "π e" )
